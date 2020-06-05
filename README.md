@@ -38,7 +38,3 @@ Once everything is done go the db.php file and change the username and passsword
  - elearn/Admin/compile/compile.php
 
 Inside the compile.php change 9th and 10th line as database username and password.
-
-
-Thats It 
-Thank you.
