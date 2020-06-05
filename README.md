@@ -29,12 +29,12 @@ Install compilers based on the ubuntu version
 sudo chmod 777 -R /var/www/html
 
 # Changing db username and password
-```  once everything is done go the db.php file and change the username and passsword to your database username and password, This db.php will be located in several folders```
---->elearn/db.php
---->Admin/klu/html/db.php
---->login/login/db.php
---->login/login/admin/admin/db.php
---->elearn/Admin/compile/compile.php
+once everything is done go the db.php file and change the username and passsword to your database username and password, This db.php will be located in several folders
+ - elearn/db.php
+ - Admin/klu/html/db.php
+ - login/login/db.php
+ - login/login/admin/admin/db.php
+ - elearn/Admin/compile/compile.php
 
 ```inside the compile.php change 9th and 10th line as database username and password```
 
