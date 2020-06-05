@@ -1,7 +1,7 @@
 # Learning-Management-System
 # Demo
 
-165.22.223.202/elearn
+[Click here for demo](http://165.22.223.202/elearn)
 
 # Languages
 C , C++ ,Java, python
