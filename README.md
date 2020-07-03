@@ -1,4 +1,4 @@
-# Learning-Management-System
+# Learning Management System
 # Demo
 
 [Click here for demo](http://165.22.223.202/elearn)
