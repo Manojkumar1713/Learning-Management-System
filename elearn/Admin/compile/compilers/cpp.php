@@ -10,6 +10,7 @@ $qu="select * from question where id=$id";
 $p=mysqli_query($con,$qu);
 while ($r=mysqli_fetch_array($p))
  {
+   $author = $r['author'];
 	$num = $r['Number'];
 	$title=$r['title'];
 	$sample_input=$r['input'];
@@ -90,14 +91,39 @@ while ($r=mysqli_fetch_array($p))
 echo "</br></br>";
 /////////////////////////////Tes1/////////////////////////////
 $output = (string)$output;
-$out1 = strcmp($output,$sample_output);
-if($out1 == 0)
-{
-		echo "<pre>your code is correct..!</pre>";
-		$marks = $marks + 2;
-	}else {
-    echo "<pre>Your Code may be Wrong Thank you For Participating...</pre>";
+$output = trim($output);
+if($output != null){
+$sample_output = trim($sample_output);
+
+$output = explode("\n",$output);
+$sample_output = explode("\n",$sample_output);
+if (count($output) == count($sample_output)){
+  $c = 0;
+  for($i =0;$i<count($output);$i++)
+  {
+    if(strcmp($output[$i],$sample_output) == 0)
+    {
+      $c++;
+    }
   }
+}
+if($c == count($output))
+{
+  echo "<br>";
+  echo "<pre>your code is correct..!</pre>";
+  $marks=$marks+2;
+}
+else{
+  echo "<br>";
+  echo "<pre>Your code may be wrong..!";
+}
+}
+else{
+echo "<br>";
+echo "<pre>Your code may be wrong..!";
+}
+echo "<pre>checking test cases</pre><br>";
+
 
 
   $file_code=fopen($filename_code,"w+");
@@ -153,15 +179,36 @@ if($out1 == 0)
 echo "</br></br>";
 ////////////////////////////Test2//////////////////////////
 $output = (string)$output;
-$out1 = strcmp($output,$testcase_output);
-if($out1 == 0)
-{
-		echo "<pre style='color:green;'>TestCase :1 Passed</pre>";
-		$marks = $marks + 3;
-	}else {
-    echo "<pre style='color:red;'>TestCase :1 Failed </pre>";
+$output = trim($output);
+if($output != null){
+$sample_output = trim($testcase_output);
+$output = explode("\n",$output);
+$sample_output = explode("\n",$sample_output);
+if (count($output) == count($sample_output)){
+  $c = 0;
+  for($i =0;$i<count($output);$i++)
+  {
+    if(strcmp($output[$i],$sample_output) == 0)
+    {
+      $c++;
+    }
   }
-
+}
+if($c == count($output))
+{
+  echo "<br>";
+  echo "<pre style='color:green;'>Test Case-1 : passed</pre>";
+  $marks=$marks+3;
+}
+else{
+  echo "<br>";
+  echo "<pre style='color:red;'>Test case 1-failed</pre> ";
+}
+}
+else{
+echo "<br>";
+echo "<pre style='color:red;'>Test case 1-failed</pre> ";
+}
   $file_code=fopen($filename_code,"w+");
   fwrite($file_code,$code);
   fclose($file_code);
@@ -215,15 +262,36 @@ if($out1 == 0)
   echo "</br></br>";
   ///////////////////////Test3//////////////////////
   $output = (string)$output;
-  $out1 = strcmp($output,$testcase_output2);
-	if($out1 == 0)
-	{
-    echo "<pre style='color:green;'>TestCase :2 Passed</pre>";
-    $marks = $marks + 5;
-  }else {
-    echo "<pre style='color:red;'>TestCase :2 Failed </pre>";
+  $output = trim($output);
+    if($output != null){
+  $sample_output = trim($testcase_output2);
+  $output = explode("\n",$output);
+  $sample_output = explode("\n",$sample_output);
+  if (count($output) == count($sample_output)){
+    $c = 0;
+    for($i =0;$i<count($output);$i++)
+    {
+      if(strcmp($output[$i],$sample_output) == 0)
+      {
+        $c++;
+      }
+    }
   }
-echo "</br></br>";
+  if($c == count($output))
+  {
+    echo "<br>";
+    echo "<pre style='color:green;'>Test Case-2 : passed</pre>";
+    $marks=$marks+5;
+  }
+  else{
+    echo "<br>";
+    echo "<pre style='color:red;'>Test case 2-failed</pre> ";
+  }
+}
+else{
+  echo "<br>";
+  echo "<pre style='color:red;'>Test case 2-failed</pre> ";
+}
 
 echo "You got $marks Out of 10";
 

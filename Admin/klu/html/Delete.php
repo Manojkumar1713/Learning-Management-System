@@ -108,12 +108,12 @@ if(isset($_GET['del']))
                 <div class="sidebar-head">
                     <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
                 </div>
-                <ul class="nav" id="side-menu">
+								<ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
                         <a href="index.php" class="waves-effect"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="marks.php" class="waves-effect"></i>Marks </a>
+                        <a href="marks.php" class="waves-effect"></i>Student Marks </a>
                     </li>
                     <li>
                         <a href="Add.php" class="waves-effect">Assignment Questions</a>
@@ -123,16 +123,22 @@ if(isset($_GET['del']))
                     </li>
 
                     <li>
-                        <a href="data.php" class="waves-effect">Add Data</a>
-                    </li>
-                    <li>
-                         <a href="quiz.php" class="waves-effect">Quiz Questions</a>
-                    </li>
-                    <li>
-                       <a href="qdates.php" class="waves-effect">Dates</a>
+                        <a href="data.php" class="waves-effect">Course Materials</a>
                     </li>
 										<li>
-                       <a href="Assign_date.php" class="waves-effect">Assignment Date</a>
+                        <a href="deletecoursedata.php" class="waves-effect">Delete course data</a>
+                    </li>
+                    <li>
+                       <a href="quiz.php" class="waves-effect">Quiz Questions</a>
+                    </li>
+										<li>
+                       <a href="deletequizdata.php" class="waves-effect">Delete Quiz Questions</a>
+                    </li>
+                    <li>
+                       <a href="qdates.php" class="waves-effect">Quiz due date</a>
+                    </li>
+										<li>
+                       <a href="Assign_date.php" class="waves-effect">Assignment due Date</a>
                     </li>
 
                 </ul>
@@ -175,7 +181,11 @@ if(isset($_GET['del']))
                                   <thead>
                                       <tr>
                                           <th>#</th>
-                                          <th>Title</th>
+																					<th>Title</th>
+																					<th>Format</th>
+																					<th>Input</th>
+																					<th>Output</th>
+                                          <th>Number</th>
                                           <th>Delete</th>
                                       </tr>
                                   </thead>
@@ -191,7 +201,11 @@ if(isset($_GET['del']))
                                       ?>
                                       <tr>
                                         <td> <?php echo $id; ?> </td>
+																				<td> <?php echo $row ['format']; ?></td>
                                         <td> <?php echo $row ['title']; ?></td>
+																				<td> <?php echo $row ['input']; ?></td>
+																				<td> <?php echo $row ['output']; ?></td>
+																				<td> <?php echo $row ['Number']; ?></td>
                                       <td>
                                         <a class="btn btn-info" href="Delete.php?del=<?php echo $row['id']; ?>">DELETE QUESTION </a>
                                       </td>

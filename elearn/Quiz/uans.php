@@ -23,11 +23,7 @@
 	    	echo "<script> location.href = '/login/login/index.php';</script>";
 	    }
 
-	    $server="localhost";
-    	$pass="";
-    	$user="root";
-    	$database="questions";
-    	$db = mysqli_connect($server,$user,$pass,$database);
+	    include 'db.php';
 	    $tab = $_GET['table'];
 	  //  echo $tab;
 	    $get = $_GET['id'];
@@ -44,6 +40,11 @@
 						$sql = mysqli_query($db,$query);
 						$i=0;
 						while ($row = mysqli_fetch_array($sql)) {
+
+							if($row['fname']!="")
+							{
+								$ff = 1;
+							}
 							?>
             <ol>
 
@@ -51,7 +52,12 @@
 
                     <h3><?php echo $row['Qname']; ?></h3>
 
-                    <div>
+										<?php
+										if($ff == 1){
+										?>
+										<img src="/Admin/klu/html/uploads/quiz/<?php echo $row['fname']; ?>" id = "im" height="100%" width="110%"></img>
+									<?php } ?>
+										<div>
                         <input type='radio' name='<?php echo $i;?>' value='A' />
                         <label for="<?php echo $i+1;echo ")"; ?>">a) <?php echo $row['opA']; ?></label>
                     </div>
@@ -79,7 +85,9 @@
             </ol>
 						<?php
 						$i++;
+
 						}
+
 						     ?>
 
             <input type="submit" value="Submit Quiz" name="submit" />

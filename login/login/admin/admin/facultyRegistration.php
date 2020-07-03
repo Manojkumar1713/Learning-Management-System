@@ -122,17 +122,18 @@ button:hover {
 
 
     <label for="register"><b>Enter Faculty Id</b></label>
-    <input type="text" placeholder="Enter Register number" name="reg" required>
+    <input type="text" placeholder="Enter Faculty Id" name="reg" required>
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
 
     <label for="course"><b>Subject</b></label>
     <select name="course">
-      <option>Select one Subject</option>
+      <option value="C">Select one Subject</option>
       <option value="C">C Language</option>
       <option value="CC">C++ Language</option>
       <option value="Java">Java Language</option>
+			<option value="python32">Python Language</option>
     </select>
 
 

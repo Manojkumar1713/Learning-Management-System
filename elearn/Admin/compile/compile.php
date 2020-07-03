@@ -138,7 +138,7 @@ $con = mysqli_connect($server,$user,$pass,$database);
 </div><br><br><br>
 <?php
 $user1 = $_SESSION['register'];
-$query = "insert into marks(user,marks,title,Number,Language) values('$user1','$marks','$title','$num','$languageID');";
+$query = "insert into marks(user,marks,title,Number,Language,author) values('$user1','$marks','$title','$num','$languageID','$author');";
 //echo $query;
 $r = mysqli_query($con,$query);
 //echo $query;

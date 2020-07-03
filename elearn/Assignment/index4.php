@@ -43,7 +43,7 @@ else{
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Learning Management System</h3>
+                <h3><a href="/elearn">Learning Management System</a></h3>
                 <strong>LMS</strong>
             </div>
 
@@ -66,7 +66,7 @@ else{
                   			$id++;
                         ?>
                         <li>
-                            <a href="index4.php?id=<?php echo $row['id']; ?>&topic=<?php echo $row ['title']; ?>&lang=<?php echo $lang; ?>"><?php echo $row ['title']; ?></a>
+                            <a href="index4.php?id=<?php echo $row['id']; ?>&topic=<?php echo $row ['title']; ?>&lang=<?php echo $lang; ?>"><?php echo $row ['Number']; ?></a>
                         </li>
                         <?php
 
@@ -97,6 +97,8 @@ else{
                     <?php
                     $id=$_GET['id'];
                     $sq = "select Number from question where id = $id";
+
+                  //  echo $sq;
                     $e =  mysqli_query($con,$sq);
                     while($re = mysqli_fetch_array($e))
                     {
@@ -105,7 +107,9 @@ else{
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
-                  <?php } ?>
+                  <?php
+                  $topic = $re['Number'];
+                } ?>
 
                 </div>
             </nav>
@@ -113,9 +117,9 @@ else{
 
                 <?php
                 //  $id=$_GET['id'];
-                  $topic=$_GET['topic'];
+
                   $ue = $_SESSION['register'];
-                  $sql2 = "select *from marks where user ='$ue' AND title='$topic'";
+                  $sql2 = "select * from marks where user ='$ue' AND Number='$topic'";
                 //  echo $sql2;
                   $ee = mysqli_query($con,$sql2);
                   if(mysqli_num_rows($ee) == 1)
@@ -241,7 +245,7 @@ else{
 
     if (mode) {
       var contents = {
-      c: '#include<stdio.h> \n int main{ \n \n}',
+      c: '#include<stdio.h> \n int main(){ \n \n}',
       cc: '#include<bits/stdc++.h>\nusing namespace std;\nint main{ \n \n}',
       java: 'class Main{ \n\tpublic static void main(String args[]){\n\t\t//code\n\t}\n}',
       python: ''

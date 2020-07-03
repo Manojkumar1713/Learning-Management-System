@@ -14,41 +14,12 @@ while($row = mysqli_fetch_array($res)){
 }
 $user = $_SESSION['admin'];
 
-$table = strtolower($table);
-
-if(isset($_POST['submit']))
+if(isset($_GET['del']))
 {
-	if(!empty($_FILES['file']['name']))
-	{
-	$file = $_FILES['file']['name'];
-	$filesize = $_FILES['file']['size'];
-	$filetype = $_FILES['file']['type'];
-	$filetmp = $_FILES['file']['tmp_name'];
-	$files = 'uploads/quiz/'.$_FILES['file']['name'];
-	$move = move_uploaded_file($filetmp,$files);
-	}
-	else{
-		$move= 1;
-		$file = "";
-	}
+  $x=$_GET['del'];
+  $sql = "delete from `$table` where id =$x and author=$user";
+  $res = mysqli_query($con,$sql);
 
-  $t = $_POST['table'];
-  $test_name=$_POST['unit'];
-  $question=$_POST['question'];
-  $opA=$_POST['optionA'];
-  $opB=$_POST['optionB'];
-  $opC=$_POST['optionC'];
-  $opD=$_POST['optionD'];
-  $correct=$_POST['ans'];
-  $reason = $_POST['reason'];
-  $query="insert into `$t`(Test_name,Qname,opA,opB,opC,opD,correct,reason,fname,author) values ('$test_name','$question','$opA','$opB','$opC','$opD','$correct','$reason','$file','$user');";
-	if($move){
-		$sql=mysqli_query($con,$query);
-	}
-}
-if($sql)
-{
-  $flag = 1;
 }
 
  ?>
@@ -68,8 +39,6 @@ if($sql)
 		<link rel="icon" type="image/png" href="/login/login/images/icons/klu.png"/>
 		<!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Menu CSS -->
     <link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
     <!-- toast CSS -->
@@ -113,11 +82,18 @@ if($sql)
             <div class="navbar-header">
                 <div class="top-left-part">
                     <!-- Logo -->
-                  <h3><?php echo $table;
-
-									?></h3>
+                  <h3><?php echo $table; ?></h3>
                 </div>
-
+                <!-- /Logo -->
+                <!--<ul class="nav navbar-top-links navbar-right pull-right">
+                    <li>
+                        <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
+                            <input type="text" placeholder="Search..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
+                    </li>
+                    <li>
+                        <a class="profile-pic" href="#"> <img src="../plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b></a>
+                    </li>
+                </ul>-->
             </div>
             <!-- /.navbar-header -->
             <!-- /.navbar-top-links -->
@@ -132,7 +108,7 @@ if($sql)
                 <div class="sidebar-head">
                     <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
                 </div>
-                <ul class="nav" id="side-menu">
+								<ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
                         <a href="index.php" class="waves-effect"></i>Dashboard</a>
                     </li>
@@ -149,13 +125,13 @@ if($sql)
                     <li>
                         <a href="data.php" class="waves-effect">Course Materials</a>
                     </li>
-										<li>
+                    <li>
                         <a href="deletecoursedata.php" class="waves-effect">Delete course data</a>
                     </li>
                     <li>
                        <a href="quiz.php" class="waves-effect">Quiz Questions</a>
                     </li>
-										<li>
+                    <li>
                        <a href="deletequizdata.php" class="waves-effect">Delete Quiz Questions</a>
                     </li>
                     <li>
@@ -182,7 +158,7 @@ if($sql)
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Enter Quiz data for Respective Course</h4> </div>
+                        <h4 class="page-title">Deleting Course Data</h4> </div>
 
                     <!-- /.col-lg-12 -->
                 </div>
@@ -192,61 +168,49 @@ if($sql)
                 <!-- ============================================================== -->
                 <!-- .row -->
 
-                <?php
-                if($sql)
-                {
-
-                  ?>
-                  <div class="alert  alert-success">
-                    <strong>Success</strong> Data Successfully Inserted <?php echo $table; ?> Table
-                  </div>
-                  <?php
-                }
-                ?>
                 <!--/.row -->
                 <!--row -->
                 <!-- /.row -->
-                <form method="post" enctype="multipart/form-data">
-                  <table>
-                    <div class="form-group">
-                      <label class="title" >Enter Question</label>
-
-                        <input type="text" id ="title" class="form-control" name="question" placeholder="Enter question" required>
-
-                    </div>
-                    <div class="form-group">
-                      <label class="title" >Enter Unit Number</label>
-
-                        <input type="text" id ="title" class="form-control" name="unit" placeholder="Enter unit number" required>
-
-                    </div>
-										<div calss = "form-group">
-											<label for ="file">Upload Any Image</label>
-												<input type ="file" name="file" id="file" class="form-control">
-										</div>
-										<br>
-                      <tr><td>OptionA:</td><td><input type="text" name="optionA"></br></br></td></tr>
-                      <tr><td>OptionB:</td><td><input type="text" name="optionB"></br></br></td></tr>
-                      <tr><td>OptionC:</td><td><input type="text" name="optionC"></br></br></td></tr>
-                      <tr><td>OptionD:</td><td><input type="text" name="optionD"></br></br></td></tr>
-                      <tr><td>correct Option</td><td><input type="char" name="ans"></br></br></td></tr>
-                    </table>
-                    <input type="text" name="table" value="<?php echo $table; ?>" style="display:none;">
-                  </br>
-                    <label class="title" >Enter Reason</label>
-
-                      <input type="text" id ="reason" class="form-control" name="reason" placeholder="Enter Reason" required>
-
-                    </br>
-                    <div class="form-group">
-
-                        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-
-                </div>
-                  </form>
-
                 <div class="row">
-                    <?php //echo $query; ?>
+                  <div class="col-sm-12">
+                      <div class="white-box">
+                          <h3 class="box-title">Delete Course Data</h3>
+                          <p class="text-muted">Delete <code>.table</code></p>
+                          <div class="table-responsive">
+                              <table class="table">
+                                  <thead>
+                                      <tr>
+                                          <th>#</th>
+                                          <th>Title</th>
+                                          <th>Delete</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                    <?php $sql="select * from `$table` where author='$user';";
+
+                                    $res = mysqli_query($con,$sql);
+                                    $id =0;
+                                    $count=0;
+                                    while($row =mysqli_fetch_array($res))
+                                    {
+                                      $id++;
+                                      ?>
+                                      <tr>
+                                        <td> <?php echo $id; ?> </td>
+                                        <td> <?php echo $row ['chapter']; ?></td>
+                                      <td>
+                                        <a class="btn btn-info" href="deletecoursedata.php?del=<?php echo $row['id']; ?>">DELETE COURSE </a>
+                                      </td>
+                                    </tr>
+                                    <?php
+                                    $count++;
+                                  }
+                                  ?>
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
                 </div>
 
             </div>

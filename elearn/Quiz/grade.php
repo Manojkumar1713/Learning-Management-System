@@ -55,18 +55,31 @@
 
 		 echo "<br>";
 		   while ($row = mysqli_fetch_array($sql)) {
+				 if($row['fname']!="")
+				 {
+					 $ff = 1;
+				 }
 				 ?>
             <ol>
 
                 <li>
 
                     <h3><?php echo $i+1; echo ")"; echo $row['Qname']; ?></h3>
+
 										<?php
 										if($ans[$i]==$row['correct'])
 									  $val="<img src='pictures/right.png' width=20px; height=20px;>";
 									  else
 									  $val="<img src='pictures/wrong1.jpg' width=20px; height=20px;>";
 									  ?>
+
+										<?php
+										if($ff == 1){
+										?>
+										<img src="/Admin/klu/html/uploads/quiz/<?php echo $row['fname']; ?>" id = "im" height="100%" width="110%"></img>
+										<?php } ?>
+
+
                     <div>
 											<?php if($ans[$i]=='A')
 											{ echo $val;

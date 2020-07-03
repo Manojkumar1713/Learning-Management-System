@@ -103,12 +103,12 @@ $table = strtolower($table);
                 <div class="sidebar-head">
                     <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
                 </div>
-                <ul class="nav" id="side-menu">
+								<ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
                         <a href="index.php" class="waves-effect"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="marks.php" class="waves-effect"></i>Marks </a>
+                        <a href="marks.php" class="waves-effect"></i>Student Marks </a>
                     </li>
                     <li>
                         <a href="Add.php" class="waves-effect">Assignment Questions</a>
@@ -118,16 +118,22 @@ $table = strtolower($table);
                     </li>
 
                     <li>
-                        <a href="data.php" class="waves-effect">Add Data</a>
+                        <a href="data.php" class="waves-effect">Course Materials</a>
+                    </li>
+										<li>
+                        <a href="deletecoursedata.php" class="waves-effect">Delete course data</a>
                     </li>
                     <li>
                        <a href="quiz.php" class="waves-effect">Quiz Questions</a>
                     </li>
+										<li>
+                       <a href="deletequizdata.php" class="waves-effect">Delete Quiz Questions</a>
+                    </li>
                     <li>
-                       <a href="qdates.php" class="waves-effect">Dates</a>
+                       <a href="qdates.php" class="waves-effect">Quiz due date</a>
                     </li>
 										<li>
-                       <a href="Assign_date.php" class="waves-effect">Assignment Date</a>
+                       <a href="Assign_date.php" class="waves-effect">Assignment due Date</a>
                     </li>
 
                 </ul>
@@ -172,13 +178,12 @@ $table = strtolower($table);
                                           <th>#</th>
                                           <th>User</th>
 
-                                          <th>A1</th>
-                                          <th>A2</th>
-                                          <th>A3</th>
+                                          <th>Marks</th>
+                                          <th>Number</th>
                                       </tr>
                                   </thead>
                                   <tbody>
-                                    <?php $sql="select user , Round(AVG(marks)) As A1 from marks where Number = 'A1' and Language='$table' group by user;";
+                                    <?php $sql="select * from marks where author='$user';";
                                     //echo $sql;
                                     $res = mysqli_query($con,$sql);
                                     $id =0;
@@ -190,46 +195,14 @@ $table = strtolower($table);
                                       <tr>
                                         <td> <?php echo $id; ?> </td>
                                         <td> <?php echo $row ['user']; ?></td>
-                                        <td> <?php echo $row['A1']; ?></td>
+                                        <td> <?php echo $row['marks']; ?></td>
+																				<td> <?php echo $row['Number']; ?></td>
                                       </tr>
                                     <?php
                                     $count++;
                                   }
                                   ?>
-                                  <?php $sql="select user , Round(AVG(marks)) As A2 from marks where Num = 'A2' and Language='$table' group by user;";
-                                 // echo $sql;
-                                  $res = mysqli_query($con,$sql);
 
-                                  while($row =mysqli_fetch_array($res))
-                                  {
-                                    $id++;
-                                    ?>
-                                    <tr>
-                                      <td> <?php echo $id; ?> </td>
-                                      <td> <?php echo $row ['user']; ?></td>
-                                      <td> <?php echo $row['A2']; ?></td>
-                                    </tr>
-                                  <?php
-                                  $count++;
-                                }
-                                ?>
-
-                                <?php $sql="select user , Round(AVG(marks)) As A3 from marks where Num = 'A3' and Language='$table' group by user;";
-
-                                $res = mysqli_query($con,$sql);
-
-                                while($row =mysqli_fetch_array($res))
-                                {
-                                  $id++;
-                                  ?>
-                                    <td> <?php echo $id; ?> </td>
-                                    <td> <?php echo $row ['user']; ?></td>
-                                    <td> <?php echo $row['A3']; ?></td>
-                                </tr>
-                                <?php
-                                $count++;
-                              }
-                              ?>
                                   </tbody>
                               </table>
                           </div>

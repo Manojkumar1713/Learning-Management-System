@@ -98,34 +98,40 @@ while($row = mysqli_fetch_array($res)){
                 <div class="sidebar-head">
                     <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
                 </div>
-                <ul class="nav" id="side-menu">
-                    <li style="padding: 70px 0 0;">
-                        <a href="index.php" class="waves-effect"></i>Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="marks.php" class="waves-effect"></i>Marks </a>
-                    </li>
-                    <li>
-                        <a href="Add.php" class="waves-effect">Assignment Questions</a>
-                    </li>
-                    <li>
-                        <a href="Delete.php" class="waves-effect">Delete Assignment</a>
-                    </li>
+								<ul class="nav" id="side-menu">
+										<li style="padding: 70px 0 0;">
+												<a href="index.php" class="waves-effect"></i>Dashboard</a>
+										</li>
+										<li>
+												<a href="marks.php" class="waves-effect"></i>Student Marks </a>
+										</li>
+										<li>
+												<a href="Add.php" class="waves-effect">Assignment Questions</a>
+										</li>
+										<li>
+												<a href="Delete.php" class="waves-effect">Delete Assignment</a>
+										</li>
 
-                    <li>
-                        <a href="data.php" class="waves-effect">Add Data</a>
-                    </li>
-                    <li>
-                       <a href="quiz.php" class="waves-effect">Quiz Questions</a>
-                    </li>
-                    <li>
-                       <a href="qdates.php" class="waves-effect">Dates</a>
+										<li>
+												<a href="data.php" class="waves-effect">Course Materials</a>
+										</li>
+										<li>
+                        <a href="deletecoursedata.php" class="waves-effect">Delete course data</a>
                     </li>
 										<li>
-                       <a href="Assign_date.php" class="waves-effect">Assignment Date</a>
+											 <a href="quiz.php" class="waves-effect">Quiz Questions</a>
+										</li>
+										<li>
+                       <a href="deletequizdata.php" class="waves-effect">Delete Quiz Questions</a>
                     </li>
+										<li>
+											 <a href="qdates.php" class="waves-effect">Quiz due date</a>
+										</li>
+										<li>
+											 <a href="Assign_date.php" class="waves-effect">Assignment due Date</a>
+										</li>
 
-                </ul>
+								</ul>
                 <div class="center p-20">
                      <a href="logout.php" class="btn btn-danger btn-block waves-effect waves-light">LOGOUT</a>
                  </div>
